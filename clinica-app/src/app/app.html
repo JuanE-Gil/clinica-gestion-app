@@ -1,0 +1,59 @@
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+
+      <a
+      routerLink="/home">
+      <div class="flex items-center gap-3">
+        <div class="bg-blue-600 p-2 rounded-lg shadow-blue-200 shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-xl font-extrabold text-gray-900 tracking-tight">
+              Servicio de Atención Integral Domiciliaria
+            </h1>
+            <h1 class="text-xl font-extrabold text-gray-900 tracking-tight">
+              <span class="text-blue-600">SAID.SALUD</span>
+            </h1>
+          </div>
+        </div>
+      </a>
+
+      <div class="flex items-center space-x-4">
+        <a
+          routerLink="/products"
+          routerLinkActive="text-blue-600 bg-blue-50 border-blue-200"
+          class="flex items-center px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:text-blue-700 hover:bg-gray-100 transition-all duration-200 border border-transparent"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+          Ver Inventario
+        </a>
+        <a
+          routerLink="/patients"
+          routerLinkActive="text-blue-600 bg-blue-50 border-blue-200"
+          class="flex items-center px-4 py-2 rounded-xl text-sm font-semibold text-gray-600 hover:text-blue-700 hover:bg-gray-100 transition-all duration-200 border border-transparent"
+        >
+          <svg fill="#000000" stroke="currentColor" class="h-5 w-5 mr-2" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.731,14.075c-1.387,0.252 -2.676,0.921 -3.687,1.932c-1.309,1.309 -2.044,3.084 -2.044,4.935l0,4.039c0,1.657 1.343,3 3,3c4.184,-0 13.816,-0 18,-0c1.657,-0 3,-1.343 3,-3l0,-4.039c0,-1.851 -0.735,-3.626 -2.044,-4.935c-1.011,-1.011 -2.3,-1.68 -3.687,-1.932c0.468,-0.939 0.731,-1.997 0.731,-3.117c0,-3.863 -3.137,-7 -7,-7c-3.863,0 -7,3.137 -7,7c0,1.12 0.263,2.178 0.731,3.117Zm11.169,1.88c-1.262,1.239 -2.993,2.003 -4.9,2.003c-1.907,0 -3.638,-0.764 -4.9,-2.003c-0.04,0.005 -0.08,0.007 -0.12,0.007c-1.321,0 -2.588,0.525 -3.521,1.459c-0.934,0.934 -1.459,2.201 -1.459,3.521c0,0 0,4.039 0,4.039c0,0.552 0.448,1 1,1l18,-0c0.552,-0 1,-0.448 1,-1c-0,-0 0,-4.039 0,-4.039c0,-1.32 -0.525,-2.587 -1.459,-3.521c-0.933,-0.934 -2.2,-1.459 -3.521,-1.459c-0.04,0 -0.08,-0.002 -0.12,-0.007Zm-4.9,-9.997c2.76,0 5,2.241 5,5c0,2.76 -2.24,5 -5,5c-2.76,0 -5,-2.24 -5,-5c0,-2.759 2.24,-5 5,-5Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20,20.008l-1,-0c-0.552,-0 -1,0.448 -1,1c-0,0.552 0.448,1 1,1l1,-0l0,1c-0,0.552 0.448,1 1,1c0.552,-0 1,-0.448 1,-1l0,-1l1,-0c0.552,-0 1,-0.448 1,-1c-0,-0.552 -0.448,-1 -1,-1l-1,-0l0,-1c-0,-0.552 -0.448,-1 -1,-1c-0.552,-0 -1,0.448 -1,1l0,1Z"/></svg>
+          Ver Pacientes
+        </a>
+
+        <div class="h-8 w-12 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center text-gray-500 text-xs font-bold">
+          SAID
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<main class="bg-gray-50 min-h-screen pt-6">
+  <div class="max-w-7xl mx-auto">
+    <router-outlet></router-outlet>
+  </div>
+</main>

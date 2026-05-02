@@ -1,0 +1,72 @@
+<div class="p-6 max-w-7xl mx-auto">
+  <div class="flex justify-between items-center mb-8">
+    <a routerLink="/patients" class="text-blue-600 font-bold flex items-center hover:underline">
+      ← Volver al listado
+    </a>
+
+    <button (click)="showAdminModal.set(true)"
+            class="bg-blue-600 text-white px-6 py-3 rounded-2xl font-black shadow-lg shadow-blue-100 hover:scale-105 transition-all">
+      + Registrar Nueva Atención
+    </button>
+  </div>
+
+  @if (patient()) {
+    <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 mb-8 flex justify-between items-center">
+      <div>
+        <h2 class="text-3xl font-black text-gray-900">{{ patient().full_name }}</h2>
+        <p class="text-gray-400 font-medium">DNI: {{ patient().dni }} | {{ patient().address }}</p>
+      </div>
+      <div class="text-right">
+        <p class="text-xs font-bold text-gray-400 uppercase">Gasto Acumulado</p>
+        <p class="text-3xl font-black text-blue-600">S/. {{ calculateTotal() }}</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
+      <table class="w-full text-left">
+        <thead class="bg-gray-50 border-b">
+          <tr class="text-xs font-bold text-gray-400 uppercase">
+            <th class="px-6 py-4">Fecha / Enfermera</th>
+            <th class="px-6 py-4">Procedimiento</th>
+            <th class="px-6 py-4">Insumos Detallados</th>
+            <th class="px-6 py-4 text-right">Costo Sesión</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          @for (h of history(); track h.id) {
+            <tr>
+              <td class="px-6 py-4">
+                <p class="text-sm font-bold text-gray-800">{{ h.fecha | date:'short' }}</p>
+                <p class="text-xs text-gray-400">{{ h.enfermera }}</p>
+              </td>
+              <td class="px-6 py-4">
+                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold">
+                  {{ h.tratamiento }}
+                </span>
+              </td>
+              <td class="px-6 py-4">
+                @for (mat of h.materiales; track mat.nombre) {
+                  @if (mat.nombre) {
+                    <p class="text-xs text-gray-600">• {{ mat.nombre }} (x{{ mat.cant }})</p>
+                  }
+                }
+              </td>
+              <td class="px-6 py-4 text-right font-black text-gray-900">
+                S/. {{ h.costo_total | number:'1.2-2' }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+  @if (showAdminModal()) {
+    <div class="fixed inset-0 z-100 flex items-center justify-center p-4">
+      <div class="absolute inset-0 bg-gray-900/60 backdrop-blur-md" (click)="showAdminModal.set(false)"></div>
+      <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <app-administration-form [preselectedPatientId]="patientId()" (onSave)="onAttentionSaved()"></app-administration-form>
+      </div>
+    </div>
+  }
+</div>

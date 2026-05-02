@@ -1,0 +1,51 @@
+-- 1. Tabla de Productos
+CREATE TABLE products (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(255) NOT NULL,
+    amount INTEGER NOT NULL,
+    price_cost DECIMAL(10, 2) NOT NULL,
+    price_sale DECIMAL(10, 2) NOT NULL
+);
+
+-- 2. Tabla de Pacientes
+CREATE TABLE patients (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    full_name VARCHAR(255) NOT NULL,
+    dni VARCHAR(20) UNIQUE NOT NULL,
+    address TEXT,
+    phone VARCHAR(20)
+);
+
+-- 3. Tabla de Enfermeras
+CREATE TABLE nurses (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(255) NOT NULL,
+    license_number VARCHAR(50) UNIQUE NOT NULL
+);
+
+-- 4. Tabla de Tratamientos
+CREATE TABLE treatments (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(255) NOT NULL,
+    base_cost DECIMAL(10, 2) NOT NULL
+);
+
+-- 5. Tabla de Cabecera de Administración
+-- Transaccional: Cabecera y Detalle
+CREATE TABLE administration_header (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    patient_id UUID REFERENCES patients(id),
+    nurse_id UUID REFERENCES nurses(id),
+    treatment_id UUID REFERENCES treatments(id),
+    base_cost_at_time DECIMAL(10, 2) NOT NULL,
+    administered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 5. Tabla de Insumos de Administración
+CREATE TABLE administration_items (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    header_id UUID REFERENCES administration_header(id) ON DELETE CASCADE,
+    product_id UUID REFERENCES products(id),
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    price_at_time DECIMAL(10, 2) NOT NULL
+);

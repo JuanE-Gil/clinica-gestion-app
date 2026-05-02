@@ -1,0 +1,22 @@
+{
+  "name": "clinica-gestion-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:all": "concurrently \"npm run start-front\" \"npm run start-back\"",
+    "start:all-dev": "concurrently \"npm run start-front\" \"npm run start-dev-back\"",
+    "start-front": "cd clinica-app && ng serve -o",
+    "start-back": "cd clinica-server && npm start",
+    "start-dev-back": "cd clinica-server && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.0"
+  }
+}
